@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculo de Frete</title>
+
+    <style>
+      body {
+        background-color: aliceblue;
+        font-size: 28px;
+        font-family: "Kanit", sans-serif;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .resultado {
+        display: none;
+      }
+
+      input {
+        font-size: 25px;
+        padding: 10px 5px 10px 5px;
+        border: 2px solid gray;
+        border-radius: 4px;
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: coral;
+        margin: 40px;
+        padding: 10px 20px;
+        font-size: 25px;
+        color: white;
+        border: none;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background-color: rgb(252, 95, 38);
+        transform: translateY(2px);
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <form id ="container" class="container">
+      <h2>Cálculo de Frete</h2>
+      <img
+        src="https://i.pinimg.com/originals/e3/48/87/e34887c452500ee21dc6ffe78447124e.png"
+        alt="caminhão"
+        width="200px"
+      />
+      <input
+        id="peso"
+        type="text"
+        name="peso"
+        class="campo"
+        placeholder="Peso do produto em kg"
+      />
+      <input
+        id="distancia"
+        type="text"
+        name="distancia"
+        class="campo"
+        placeholder="Distância do trajeto em km"
+      />
+      <button onclick="calcularFrete()" type="button">Calcular</button>
+    </form>
+
+    <section id="resultado" class="container resultado">
+      <h2>Cálculo de Frete</h2>
+      <p id="valor-frete"></p>
+      <button id="calcular-novamente" onclick="calcularNovamente()" type="button">Calcular novamente</button>
+    </section>
+    <script>
+      function calcularFrete() {
+        var pesoProduto = parseFloat((document.getElementById("peso").value) * 0.50)
+        var custoDistancia = parseFloat((document.getElementById("distancia").value) * 0.10)
+        var custoFrete = pesoProduto + custoDistancia
+
+
+        document.getElementById("valor-frete").innerText = `O valor do frete é R$ ${custoFrete.toFixed(2)}`
+      
+        document.getElementById("container").style.display = "none";
+        document.getElementById("resultado").style.display = "flex";
+      }
+
+      function calcularNovamente() {
+        document.getElementById("peso").value = ""
+        document.getElementById("distancia").value = ""
+        document.getElementById("resultado").style.display = "none";
+        document.getElementById("container").style.display = "flex";
+      }
+    </script>
+  </body>
+</html>
